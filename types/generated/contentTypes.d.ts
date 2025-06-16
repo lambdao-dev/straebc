@@ -414,11 +414,45 @@ export interface ApiAboutAbout extends Schema.SingleType {
   };
 }
 
+export interface ApiContactContact extends Schema.CollectionType {
+  collectionName: 'contacts';
+  info: {
+    description: '';
+    displayName: 'Contact';
+    pluralName: 'contacts';
+    singularName: 'contact';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    comment: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    done: Attribute.Boolean;
+    email: Attribute.Email;
+    page: Attribute.String;
+    question: Attribute.Text;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCourseCourse extends Schema.CollectionType {
   collectionName: 'courses';
   info: {
     description: '';
-    displayName: 'course';
+    displayName: 'Course';
     pluralName: 'courses';
     singularName: 'course';
   };
@@ -481,6 +515,16 @@ export interface ApiCourseCourse extends Schema.CollectionType {
         i18n: {
           localized: true;
         };
+        translate: {
+          translate: 'translate';
+        };
+      }>;
+    students: Attribute.Relation<
+      'api::course.course',
+      'manyToMany',
+      'api::student.student'
+    > &
+      Attribute.SetPluginOptions<{
         translate: {
           translate: 'translate';
         };
@@ -725,7 +769,7 @@ export interface ApiHomeHome extends Schema.SingleType {
   collectionName: 'homes';
   info: {
     description: '';
-    displayName: 'home';
+    displayName: 'Home';
     pluralName: 'homes';
     singularName: 'home';
   };
@@ -876,6 +920,41 @@ export interface ApiPostPost extends Schema.CollectionType {
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiStudentStudent extends Schema.CollectionType {
+  collectionName: 'students';
+  info: {
+    displayName: 'Student';
+    pluralName: 'students';
+    singularName: 'student';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    courses: Attribute.Relation<
+      'api::student.student',
+      'manyToMany',
+      'api::course.course'
+    >;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::student.student',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    email: Attribute.Email & Attribute.Required;
+    name: Attribute.String;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::student.student',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1493,6 +1572,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
+      'api::contact.contact': ApiContactContact;
       'api::course.course': ApiCourseCourse;
       'api::director.director': ApiDirectorDirector;
       'api::download.download': ApiDownloadDownload;
@@ -1500,6 +1580,7 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::institute.institute': ApiInstituteInstitute;
       'api::post.post': ApiPostPost;
+      'api::student.student': ApiStudentStudent;
       'api::teacher.teacher': ApiTeacherTeacher;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

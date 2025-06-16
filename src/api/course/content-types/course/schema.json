@@ -4,7 +4,7 @@
   "info": {
     "singularName": "course",
     "pluralName": "courses",
-    "displayName": "course",
+    "displayName": "Course",
     "description": ""
   },
   "options": {
@@ -75,6 +75,17 @@
       "pluginOptions": {
         "i18n": {
           "localized": false
+        }
+      }
+    },
+    "students": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::student.student",
+      "mappedBy": "courses",
+      "pluginOptions": {
+        "translate": {
+          "translate": "translate"
         }
       }
     }
