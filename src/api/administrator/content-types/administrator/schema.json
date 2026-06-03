@@ -2,9 +2,9 @@
   "kind": "collectionType",
   "collectionName": "directors",
   "info": {
-    "singularName": "director",
-    "pluralName": "directors",
-    "displayName": "Director"
+    "singularName": "administrator",
+    "pluralName": "administrators",
+    "displayName": "Administrator"
   },
   "options": {
     "draftAndPublish": true

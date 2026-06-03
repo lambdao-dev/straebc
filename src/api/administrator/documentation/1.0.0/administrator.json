@@ -1,5 +1,5 @@
 {
-  "/directors": {
+  "/administrators": {
     "get": {
       "responses": {
         "200": {
@@ -7,7 +7,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DirectorListResponse"
+                "$ref": "#/components/schemas/AdministratorListResponse"
               }
             }
           }
@@ -64,7 +64,7 @@
         }
       },
       "tags": [
-        "Director"
+        "Administrator"
       ],
       "parameters": [
         {
@@ -170,7 +170,7 @@
           }
         }
       ],
-      "operationId": "get/directors"
+      "operationId": "get/administrators"
     },
     "post": {
       "responses": {
@@ -179,7 +179,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DirectorResponse"
+                "$ref": "#/components/schemas/AdministratorResponse"
               }
             }
           }
@@ -236,23 +236,23 @@
         }
       },
       "tags": [
-        "Director"
+        "Administrator"
       ],
       "parameters": [],
-      "operationId": "post/directors",
+      "operationId": "post/administrators",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/DirectorRequest"
+              "$ref": "#/components/schemas/AdministratorRequest"
             }
           }
         }
       }
     }
   },
-  "/directors/{id}": {
+  "/administrators/{id}": {
     "get": {
       "responses": {
         "200": {
@@ -260,7 +260,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DirectorResponse"
+                "$ref": "#/components/schemas/AdministratorResponse"
               }
             }
           }
@@ -317,7 +317,7 @@
         }
       },
       "tags": [
-        "Director"
+        "Administrator"
       ],
       "parameters": [
         {
@@ -331,7 +331,7 @@
           }
         }
       ],
-      "operationId": "get/directors/{id}"
+      "operationId": "get/administrators/{id}"
     },
     "put": {
       "responses": {
@@ -340,7 +340,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DirectorResponse"
+                "$ref": "#/components/schemas/AdministratorResponse"
               }
             }
           }
@@ -397,7 +397,7 @@
         }
       },
       "tags": [
-        "Director"
+        "Administrator"
       ],
       "parameters": [
         {
@@ -411,13 +411,13 @@
           }
         }
       ],
-      "operationId": "put/directors/{id}",
+      "operationId": "put/administrators/{id}",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/DirectorRequest"
+              "$ref": "#/components/schemas/AdministratorRequest"
             }
           }
         }
@@ -488,7 +488,7 @@
         }
       },
       "tags": [
-        "Director"
+        "Administrator"
       ],
       "parameters": [
         {
@@ -502,10 +502,10 @@
           }
         }
       ],
-      "operationId": "delete/directors/{id}"
+      "operationId": "delete/administrators/{id}"
     }
   },
-  "/directors/{id}/localizations": {
+  "/administrators/{id}/localizations": {
     "post": {
       "responses": {
         "200": {
@@ -513,7 +513,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DirectorLocalizationResponse"
+                "$ref": "#/components/schemas/AdministratorLocalizationResponse"
               }
             }
           }
@@ -570,7 +570,7 @@
         }
       },
       "tags": [
-        "Director"
+        "Administrator"
       ],
       "parameters": [
         {
@@ -584,13 +584,13 @@
           }
         }
       ],
-      "operationId": "post/directors/{id}/localizations",
+      "operationId": "post/administrators/{id}/localizations",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/DirectorLocalizationRequest"
+              "$ref": "#/components/schemas/AdministratorLocalizationRequest"
             }
           }
         }
