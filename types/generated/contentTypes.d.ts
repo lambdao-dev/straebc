@@ -809,6 +809,50 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
+export interface ApiHskHsk extends Schema.SingleType {
+  collectionName: 'hsks';
+  info: {
+    description: '';
+    displayName: 'Centre HSK';
+    pluralName: 'hsks';
+    singularName: 'hsk';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::hsk.hsk', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::hsk.hsk',
+      'oneToMany',
+      'api::hsk.hsk'
+    >;
+    main: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<'api::hsk.hsk', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInstituteInstitute extends Schema.SingleType {
   collectionName: 'institutes';
   info: {
@@ -1578,6 +1622,7 @@ declare module '@strapi/types' {
       'api::download.download': ApiDownloadDownload;
       'api::event.event': ApiEventEvent;
       'api::home.home': ApiHomeHome;
+      'api::hsk.hsk': ApiHskHsk;
       'api::institute.institute': ApiInstituteInstitute;
       'api::post.post': ApiPostPost;
       'api::student.student': ApiStudentStudent;
