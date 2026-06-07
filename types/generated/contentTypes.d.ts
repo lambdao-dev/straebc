@@ -415,7 +415,7 @@ export interface ApiAboutAbout extends Schema.SingleType {
 }
 
 export interface ApiAdministratorAdministrator extends Schema.CollectionType {
-  collectionName: 'directors';
+  collectionName: 'administrators';
   info: {
     displayName: 'Administrator';
     pluralName: 'administrators';
@@ -475,6 +475,58 @@ export interface ApiAdministratorAdministrator extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::administrator.administrator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContactPageContactPage extends Schema.SingleType {
+  collectionName: 'contact_pages';
+  info: {
+    description: '';
+    displayName: 'Contact Page';
+    pluralName: 'contact-pages';
+    singularName: 'contact-page';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-page.contact-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::contact-page.contact-page',
+      'oneToMany',
+      'api::contact-page.contact-page'
+    >;
+    main: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::contact-page.contact-page',
       'oneToOne',
       'admin::user'
     > &
@@ -1617,6 +1669,7 @@ declare module '@strapi/types' {
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
       'api::administrator.administrator': ApiAdministratorAdministrator;
+      'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::contact.contact': ApiContactContact;
       'api::course.course': ApiCourseCourse;
       'api::download.download': ApiDownloadDownload;
